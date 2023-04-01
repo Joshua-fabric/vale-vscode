@@ -1,6 +1,6 @@
 # Vale + VS Code
 
-> The official Visual Studio Code extension for [Vale](https://github.com/chrischinchilla/vale).
+> The Visual Studio Code extension for [Vale](https://github.com/chrischinchilla/vale).
 
 The Vale extension for VS Code provides customizable spelling, style, and grammar checking for a variety of markup formats (Markdown, AsciiDoc, reStructuredText, HTML, and DITA).
 
