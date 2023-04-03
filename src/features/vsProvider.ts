@@ -6,6 +6,7 @@ import * as vscode from "vscode";
 
 import * as utils from "./vsUtils";
 import { getReadabilityProblemLocation } from "./vsUtils";
+import { getSpellingSuggestions } from "./vsSpelling";
 
 export default class ValeProvider implements vscode.CodeActionProvider {
   private diagnosticCollection!: vscode.DiagnosticCollection;
@@ -73,7 +74,6 @@ export default class ValeProvider implements vscode.CodeActionProvider {
     const configOut = await utils.runInWorkspace(folder, stylesPath);
     try {
       const configCLI = JSON.parse(configOut);
-
       this.stylesPath = configCLI.StylesPath;
       const command = utils.buildCommand(
         binaryLocation,
@@ -104,13 +104,13 @@ export default class ValeProvider implements vscode.CodeActionProvider {
       return;
     }
 
-    const readabilityProblemLocation = getReadabilityProblemLocation()
+    const readabilityProblemLocation = getReadabilityProblemLocation();
     this.readabilityStatus.hide();
 
     for (let key in body) {
       const alerts = body[key];
       for (var i = 0; i < alerts.length; ++i) {
-        const isReadabilityProblem = alerts[i].Match === ""
+        const isReadabilityProblem = alerts[i].Match === "";
 
         if (isReadabilityProblem && readabilityProblemLocation !== "inline") {
           var readabilityMessage = alerts[0].Message;
@@ -151,7 +151,6 @@ export default class ValeProvider implements vscode.CodeActionProvider {
     let actions: vscode.CodeAction[] = [];
 
     // TODO: This needs more work / testing
-
     if (diagnostic === undefined) {
       return actions;
     }
@@ -161,7 +160,44 @@ export default class ValeProvider implements vscode.CodeActionProvider {
 
     // TODO: Handle spelling, for now check we are not handling anything but replace or remove and so don't return empty actions.
     // Also currently handles rules with no actions defined, name is empty, so again doesn't return empty actions
-    if (alert.Action.Name !== "suggest" && alert.Action.Name !== "") {
+    // TODO: Is this precise enough for all potential suggest actions?
+    const configuration = vscode.workspace.getConfiguration();
+    let spellingEnabled: boolean = configuration.get<boolean>(
+      "vale.enableSpellcheck",
+      false
+    );
+
+    if (alert.Action.Name === "suggest" && spellingEnabled == true) {
+      // TODO: Sanity, dependency, and OS check
+      // TODO: Have to repass range, seems unnecessary
+      const suggestions: string[] = await getSpellingSuggestions(
+        range,
+        document
+      );
+
+      suggestions.forEach((word) => {
+        const title = "Replace with '" + word + "'";
+        const action = new vscode.CodeAction(
+          title,
+          vscode.CodeActionKind.QuickFix
+        );
+
+        const suggestion: IValeActionJSON = { Name: "replace", Params: [word] };
+        action.command = {
+          title: title,
+          command: ValeProvider.commandId,
+          arguments: [
+            document,
+            diagnostic,
+            alert.Match,
+            suggestion,
+            suggestion.Name,
+          ],
+        };
+
+        actions.push(action);
+      });
+    } else if (alert.Action.Name !== "") {
       const suggestion = alert.Action;
       const title = utils.toTitle(alert);
       const action = new vscode.CodeAction(
@@ -209,11 +245,7 @@ export default class ValeProvider implements vscode.CodeActionProvider {
       // Insert the new text
       let edit = new vscode.WorkspaceEdit();
       if (action === "replace") {
-        edit.replace(
-          document.uri,
-          diagnostic.range,
-          suggestion.Params[0] as unknown as string
-        );
+        edit.replace(document.uri, diagnostic.range, suggestion.Params[0]);
       } else if (action === "remove") {
         // NOTE: we need to add a character when deleting to avoid leaving a
         // double space.
