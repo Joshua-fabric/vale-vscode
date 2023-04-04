@@ -1,15 +1,15 @@
 {
   "name": "vale-vscode",
-  "displayName": "Vale",
+  "displayName": "Vale VSCode",
   "icon": ".vscode/icon.png",
-  "description": "The official Visual Studio Code extension for Vale.",
+  "description": "The Visual Studio Code extension for Vale.",
   "bugs": "https://github.com/chrischinchilla/vale-vscode/issues",
   "author": {
     "name": "Chris Chinchilla",
     "email": "chris@chrischinchilla.com",
     "url": "https://github.com/chrischinchilla"
   },
-  "publisher": "Chris Chinchilla",
+  "publisher": "chrischinchilla",
   "license": "MIT",
   "repository": {
     "type": "git",
