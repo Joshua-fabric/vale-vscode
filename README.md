@@ -9,7 +9,7 @@ As of **v0.15.0**, the extension drops support for [Vale Server](https://errata.
 ## Installation
 
 1. Install [Vale](https://docs.errata.ai/vale/install);
-2. install `vale-server` (this extension) via the [Marketplace](https://marketplace.visualstudio.com/items?itemName=chrischinchilla.vale-vscode);
+2. install `vale-vscode` (this extension) via the [Marketplace](https://marketplace.visualstudio.com/items?itemName=chrischinchilla.vale-vscode);
 3. restart VS Code (recommended).
 
 ## Features
