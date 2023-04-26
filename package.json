@@ -18,9 +18,9 @@
   "sponsor": {
     "url": "https://github.com/sponsors/ChrisChinchilla"
   },
-  "version": "0.17.2",
+  "version": "0.17.3",
   "engines": {
-    "vscode": "^1.72.0"
+    "vscode": "^1.77.0"
   },
   "categories": [
     "Linters"
@@ -103,19 +103,19 @@
     "test-compile": "tsc -p ./"
   },
   "devDependencies": {
-    "@types/glob": "^8.0.0",
-    "@types/mocha": "^10.0.0",
-    "@types/node": "^18.11.0",
-    "@types/vscode": "^1.72.0",
-    "@types/which": "^2.0.1",
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^18.15.13",
+    "@types/vscode": "^1.77.0",
+    "@types/which": "^3.0.0",
     "@types/nspell": "^2.1.3",
     "copy-webpack-plugin": "^11.0.0",
-    "glob": "^8.0.3",
-    "mocha": "^10.0.0",
-    "rxjs": "^7.2.0",
+    "glob": "^10.2.1",
+    "mocha": "^10.2.0",
+    "rxjs": "^7.8.0",
     "ts-loader": "^9.4.1",
     "tslint": "^6.1.3",
-    "typescript": "^4.8.4",
+    "typescript": "^5.0.4",
     "vscode-test": "^1.6.1",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
@@ -123,7 +123,7 @@
   "dependencies": {
     "fs": "0.0.1-security",
     "nspell": "^2.1.5",
-    "which": "^2.0.2",
+    "which": "^3.0.0",
     "dictionary-en": "^3.2.0"
   }
 }
