@@ -4,17 +4,15 @@
 
 The Vale extension for VS Code provides customizable spelling, style, and grammar checking for a variety of markup formats (Markdown, AsciiDoc, reStructuredText, HTML, and DITA).
 
-As of **v0.15.0**, the extension drops support for [Vale Server](https://errata.ai/vale-server/) which has ceased development. Many of the features from Vale Server will find their way into the Vale CLI tool, and this extension.
-
 ## Installation
 
 1. Install [Vale](https://docs.errata.ai/vale/install);
 2. install `vale-vscode` (this extension) via the [Marketplace](https://marketplace.visualstudio.com/items?itemName=chrischinchilla.vale-vscode);
-3. restart VS Code (recommended).
+3. Restart VS Code (recommended).
 
 ## Features
 
-### Detailed Problems View
+### Detailed problems view
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/8785025/89956665-76c9fa80-dbea-11ea-9eba-3f272a5a26e5.png" />
@@ -22,7 +20,7 @@ As of **v0.15.0**, the extension drops support for [Vale Server](https://errata.
 
 Browse detailed information for each alert, including the file location, style, and rule ID.
 
-### Go-To Rule
+### Go-to rule
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/8785025/89956857-d1635680-dbea-11ea-8e50-8e2715721e5d.png" />
@@ -30,19 +28,21 @@ Browse detailed information for each alert, including the file location, style, 
 
 Navigate from an in-editor alert to a rule's implementation on your `StylesPath` by clicking "View Rule".
 
-### Quick Fixes
+### Quick fixes
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/8785025/89957413-2eabd780-dbec-11ea-97e1-9a04bce950ce.png" />
 </p>
 
-Fix word usage, capitalization, and more using [Quick Fixes](https://code.visualstudio.com/docs/editor/refactoring#_code-actions-quick-fixes-and-refactorings) (macOS: <kbd>cmd</kbd> + <kbd>.</kbd>, Windows/Linux: <kbd>Ctrl</kbd> + <kbd>.</kbd>). The quick fixes feature depends on the underlying rule implementing an action that VSCode can then trigger.
+Fix word usage, capitalization, and more using [Quick Fixes](https://code.visualstudio.com/docs/editor/refactoring#_code-actions-quick-fixes-and-refactorings) (macOS: <kbd>cmd</kbd> + <kbd>.</kbd>, Windows/Linux: <kbd>Ctrl</kbd> + <kbd>.</kbd>). The quick fixes feature depends on the underlying rule implementing an action that VS Code can then trigger.
 
 ### Spell checking
 
-As of version 0.17.0, the extension supports spell-checking. The feature is new and likely to change, you can disable it from the settings if you use other spell checkers or experience performance issues.
+> As of version 0.17.0, the extension supports spell-checking. The feature is new and likely to change, you can disable it from the settings if you use other spell checkers or experience performance issues.
 
-With no additional Vale configuration, the spell checker uses a Hunspell-compatible US English dictionary. If you want to use other custom dictionaries, then add and configure [a `spelling` style](https://vale.sh/docs/topics/styles/#spelling) with custom dictionaries.
+**You need a `[spelling](https://vale.sh/docs/topics/styles/#spelling)` style in your Vale configuration to enable spell-checking**.
+
+With no additional Vale configuration, the spell checker uses a Hunspell-compatible US English dictionary. If you want to use other custom dictionaries, then configure your [`spelling` style](https://vale.sh/docs/topics/styles/#spelling) with custom dictionaries.
 
 The extension doesn't support adding words to dictionaries. For now, the best option is to add them to ignore files or filters as described in the [Vale documentation](https://vale.sh/docs/topics/styles/#spelling).
 
@@ -78,4 +78,10 @@ The extension offers a number of settings and configuration options (_Preference
   }
   ```
 
-- `vale.valeCLI.minAlertLevel` (default: `inherited`): Defines from which level of errors and above to display in the problems output.
+- `vale.valeCLI.minAlertLevel` (default: `inherited`): Defines from which level of errors and above to display in the problems view.
+
+- `vale.doNotShowWarningForFileToBeSavedBeforeLinting` (default: `false`): Toggle display of warning dialog that you must save a file before Vale lints it.
+
+- `vale.readabilityProblemLocation` (default: `status`): If you have any `Readability` styles, the extension can display the readability score in the status bar, the problems view, or both.
+
+- `vale.enableSpellcheck` (default: `false`): Enable in-built spell checking for any `Spelling` styles.

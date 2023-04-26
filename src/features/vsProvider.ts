@@ -158,8 +158,7 @@ export default class ValeProvider implements vscode.CodeActionProvider {
     let key = `${diagnostic.message}-${diagnostic.range}`;
     let alert = this.alertMap[key];
 
-    // TODO: Handle spelling, for now check we are not handling anything but replace or remove and so don't return empty actions.
-    // Also currently handles rules with no actions defined, name is empty, so again doesn't return empty actions
+    // TODO: Handle rules with no actions defined, name is empty, so again doesn't return empty actions
     // TODO: Is this precise enough for all potential suggest actions?
     const configuration = vscode.workspace.getConfiguration();
     let spellingEnabled: boolean = configuration.get<boolean>(
