@@ -18,9 +18,9 @@
   "sponsor": {
     "url": "https://github.com/sponsors/ChrisChinchilla"
   },
-  "version": "0.17.3",
+  "version": "0.17.4",
   "engines": {
-    "vscode": "^1.77.0"
+    "vscode": "^1.80.0"
   },
   "categories": [
     "Linters"
