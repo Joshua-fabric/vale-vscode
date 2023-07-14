@@ -82,6 +82,6 @@ The extension offers a number of settings and configuration options (_Preference
 
 - `vale.doNotShowWarningForFileToBeSavedBeforeLinting` (default: `false`): Toggle display of warning dialog that you must save a file before Vale lints it.
 
-- `vale.readabilityProblemLocation` (default: `status`): If you have any `Readability` styles, the extension can display the readability score in the status bar, the problems view, or both.
+- `vale.readabilityProblemLocation` (default: `status`): If you have any `Readability` or `metric` styles, the extension can display the readability score in the status bar, the problems view, or both.
 
 - `vale.enableSpellcheck` (default: `false`): Enable in-built spell checking for any `Spelling` styles.

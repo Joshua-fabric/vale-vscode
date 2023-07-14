@@ -110,6 +110,7 @@ export default class ValeProvider implements vscode.CodeActionProvider {
     for (let key in body) {
       const alerts = body[key];
       for (var i = 0; i < alerts.length; ++i) {
+        // Matches `metric` and `readability` alerts.
         const isReadabilityProblem = alerts[i].Match === "";
 
         if (isReadabilityProblem && readabilityProblemLocation !== "inline") {
