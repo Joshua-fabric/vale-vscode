@@ -18,7 +18,7 @@
   "sponsor": {
     "url": "https://github.com/sponsors/ChrisChinchilla"
   },
-  "version": "0.17.4.1",
+  "version": "0.17.5",
   "engines": {
     "vscode": "^1.81.0"
   },
