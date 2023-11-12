@@ -38,7 +38,6 @@ export default class ValeProvider implements vscode.CodeActionProvider {
 
   private async runVale(file: vscode.TextDocument) {
     const folder = path.dirname(file.fileName);
-
     const binaryLocation = utils.readBinaryLocation(this.logger, file);
     const configLocation = utils.readFileLocation(this.logger, file);
     if (binaryLocation === null || configLocation === null) {
@@ -293,8 +292,12 @@ export default class ValeProvider implements vscode.CodeActionProvider {
     );
 
     vscode.workspace.onDidSaveTextDocument(this.doVale, this);
-    vscode.workspace.textDocuments.forEach(this.doVale, this);
 
+    vscode.window.visibleTextEditors.forEach(document => {
+      this.doVale(document.document)
+    });
+    
+    (this.doVale, this);
     vscode.languages.registerCodeActionsProvider(
       { scheme: "*", language: "*" },
       this
