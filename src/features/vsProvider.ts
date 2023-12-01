@@ -297,7 +297,6 @@ export default class ValeProvider implements vscode.CodeActionProvider {
       this.doVale(document.document)
     });
     
-    (this.doVale, this);
     vscode.languages.registerCodeActionsProvider(
       { scheme: "*", language: "*" },
       this
