@@ -98,7 +98,7 @@ export const toTitle = (alert: IValeErrorJSON): string => {
 export const isElligibleDocument = async (
   document: vscode.TextDocument
 ): Promise<boolean> => {
-  if (document.isDirty) {
+  if ((document.isDirty) && (document.isClosed === false)) {
     const config = vscode.workspace.getConfiguration("vale");
     const shouldIgnore =
       config.get<boolean>("doNotShowWarningForFileToBeSavedBeforeLinting") ===
