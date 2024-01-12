@@ -14,27 +14,25 @@ The Vale extension for VS Code provides customizable spelling, style, and gramma
 
 ## Features
 
+At the moment, the extension uses any [configuration](https://vale.sh/docs/topics/config/), [vocabularies](https://vale.sh/docs/topics/vocab/), and [packages](https://vale.sh/docs/topics/packages/) defined in your Vale configuration. If you experience any issues with the extension, check if Vale runs as expected on the command line first.
+
+_In the future, the extension may provide a UI or other configuration options for configuring Vale_.
+
 ### Detailed problems view
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/8785025/89956665-76c9fa80-dbea-11ea-9eba-3f272a5a26e5.png" />
-</p>
+![Screenshot of problems view](https://user-images.githubusercontent.com/8785025/89956665-76c9fa80-dbea-11ea-9eba-3f272a5a26e5.png)
 
 Browse detailed information for each alert, including the file location, style, and rule ID.
 
 ### Go-to rule
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/8785025/89956857-d1635680-dbea-11ea-8e50-8e2715721e5d.png" />
-</p>
+![Screenshot of go to rule interface](https://user-images.githubusercontent.com/8785025/89956857-d1635680-dbea-11ea-8e50-8e2715721e5d.png)
 
 Navigate from an in-editor alert to a rule's implementation on your `StylesPath` by clicking "View Rule".
 
 ### Quick fixes
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/8785025/89957413-2eabd780-dbec-11ea-97e1-9a04bce950ce.png" />
-</p>
+![Screenshot of quick fix interface](https://user-images.githubusercontent.com/8785025/89957413-2eabd780-dbec-11ea-97e1-9a04bce950ce.png)
 
 Fix word usage, capitalization, and more using [Quick Fixes](https://code.visualstudio.com/docs/editor/refactoring#_code-actions-quick-fixes-and-refactorings) (macOS: <kbd>cmd</kbd> + <kbd>.</kbd>, Windows/Linux: <kbd>Ctrl</kbd> + <kbd>.</kbd>). The quick fixes feature depends on the underlying rule implementing an action that VS Code can then trigger.
 
@@ -42,7 +40,7 @@ Fix word usage, capitalization, and more using [Quick Fixes](https://code.visual
 
 > As of version 0.17.0, the extension supports spell-checking. The feature is new and likely to change, you can disable it from the settings if you use other spell checkers or experience performance issues.
 
-**You need a `[spelling](https://vale.sh/docs/topics/styles/#spelling)` style in your Vale configuration to enable spell-checking**.
+**You need a [`spelling` style](https://vale.sh/docs/topics/styles/#spelling) in your Vale configuration to enable spell-checking**.
 
 With no additional Vale configuration, the spell checker uses a Hunspell-compatible US English dictionary. If you want to use other custom dictionaries, then configure your [`spelling` style](https://vale.sh/docs/topics/styles/#spelling) with custom dictionaries.
 
